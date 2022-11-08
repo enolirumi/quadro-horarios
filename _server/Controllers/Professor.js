@@ -2,11 +2,9 @@ import ProfessorModel from "../Models/ProfessorModel";
 import database from '../db'
 
 export default {
-    create: async (name) => {
-        return await database.sync().then(async () => {
-            return await ProfessorModel.create({
-                name: name
-            })
+    create: async (data) => {
+        return await database.sync({force: true}).then(async () => {
+            return await ProfessorModel.create(data)
         })
     },
     update: async (newValue, id) => {
@@ -29,7 +27,30 @@ export default {
     },
     deleteByName: async (name) => {
         return await database.sync().then(async () => {
-            return await DisciplinaModel.destroy({
+            return await ProfessorModel.destroy({
+                where: {
+                    name: name
+                }
+            })
+        })
+    },
+    listAll: async () => {
+        return await database.sync().then(async () => {
+            return await ProfessorModel.findAll()
+        })
+    },
+    list: async (id) => {
+        return await database.sync().then(async () => {
+            return await ProfessorModel.findAll({
+                where: {
+                    id: id
+                }
+            })
+        })
+    },
+    listByName: async (name) => {
+        return await database.sync().then(async () => {
+            return await ProfessorModel.findAll({
                 where: {
                     name: name
                 }
