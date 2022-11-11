@@ -11,6 +11,6 @@ const TurmaModel = database.define('turma', {
     name: {
         type: DataTypes.STRING
     }
-})
+}, { engine: 'innodb' })
 
 export default TurmaModel

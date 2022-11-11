@@ -11,6 +11,6 @@ const DisciplinaModel = database.define('disciplina', {
     name: {
         type: DataTypes.STRING
     }
-})
+}, { engine: 'innodb' })
 
 export default DisciplinaModel

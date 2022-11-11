@@ -11,6 +11,6 @@ const ProfessorModel = database.define('professor', {
     name: {
         type: DataTypes.STRING
     }
-})
+}, { engine: 'innodb' })
 
 export default ProfessorModel

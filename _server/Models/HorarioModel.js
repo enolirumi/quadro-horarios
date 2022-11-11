@@ -11,7 +11,7 @@ const HorarioModel = database.define('horario', {
         allowNull: false,
         primaryKey: true
     }
-});
+}, { engine: 'innodb' });
 
 DisciplinaModel.hasOne(HorarioModel);
 ProfessorModel.hasOne(HorarioModel);

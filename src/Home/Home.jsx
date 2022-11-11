@@ -19,6 +19,12 @@ const Home = () => {
             console.log(res)
             return res
         })
+
+        const professores = await API.get(`${api_url}/professor`).then((res) => {
+            return JSON.parse(res.data);
+        })
+        console.log(professores);
+        setProfessores(professores);
     }
 
     const cadastraDisciplina = async () => {
@@ -41,15 +47,23 @@ const Home = () => {
         })
     }
 
-    useEffect(() => {
-
-    }, [])
-
     const [nomeProfessor, setNomeProfessor] = useState('')
     const [nomeTurma, setNomeTurma] = useState('')
     const [nomeDisciplina, setNomeDisciplina] = useState('')
 
+    const [professores, setProfessores] = useState([])
+
     const [modal, setModal] = useState(false)
+
+    useEffect(() => {
+        (async () => {
+            const professores = await API.get(`${api_url}/professor`).then((res) => {
+                return JSON.parse(res.data);
+            })
+            console.log(professores);
+            setProfessores(professores);
+        })()
+    }, [])
 
     return (
         <>
@@ -76,6 +90,13 @@ const Home = () => {
                     </div>
                     <div className={styles['btn-cadastrar']} onClick={() => cadastraTurma()}>Cadastrar</div>
                 </div>
+            </section>
+            <section className={styles['section-cadastro-horarios']}>
+                <select name="" id="">
+                    {professores.map((e) => {
+                        return <option value={e.name} key={e.id}>{e.name}</option>
+                    })}
+                </select>
             </section>
         </>
     )

@@ -17,15 +17,15 @@ app.use(Express.json());
 
 
 app.get('/professor', async (req, res) => {
-    res.status(200).json(JSON.stringify(Professor.listAll()))
+    res.status(200).json(JSON.stringify(await Professor.listAll()))
 })
 
 app.get('/disciplina', async (req, res) => {
-    res.status(200).json(JSON.stringify(Disciplina.listAll()))
+    res.status(200).json(JSON.stringify(await Disciplina.listAll()))
 })
 
 app.get('/turma', async (req, res) => {
-    res.status(200).json(JSON.stringify(Turma.listAll()))
+    res.status(200).json(JSON.stringify(await Turma.listAll()))
 })
 
 
@@ -38,7 +38,7 @@ app.get('/professor/:id', async (req, res) => {
         return res.status(400)
     }
 
-    res.status(200).json(JSON.stringify(Professor.list(id)))
+    res.status(200).json(JSON.stringify(await Professor.list(id)))
 })
 
 app.get('/disciplina/:id', async (req, res) => {
@@ -47,7 +47,7 @@ app.get('/disciplina/:id', async (req, res) => {
         return res.status(400)
     }
 
-    res.status(200).json(JSON.stringify(Disciplina.list(id)))
+    res.status(200).json(JSON.stringify(await Disciplina.list(id)))
 })
 
 app.get('/turma/:id', async (req, res) => {
@@ -56,7 +56,7 @@ app.get('/turma/:id', async (req, res) => {
         return res.status(400)
     }
 
-    res.status(200).json(JSON.stringify(Turma.list(id)))
+    res.status(200).json(JSON.stringify(await Turma.list(id)))
 })
 
 
@@ -69,7 +69,7 @@ app.get('/professor/name/:name', async (req, res) => {
         return res.status(400)
     }
     
-    res.status(200).json(JSON.stringify(Professor.listByName(name)))
+    res.status(200).json(JSON.stringify(await Professor.listByName(name)))
 })
 
 app.get('/disciplina/name/:name', async (req, res) => {
@@ -78,7 +78,7 @@ app.get('/disciplina/name/:name', async (req, res) => {
         return res.status(400)
     }
     
-    res.status(200).json(JSON.stringify(Disciplina.listByName(name)))
+    res.status(200).json(JSON.stringify(await Disciplina.listByName(name)))
 })
 
 app.get('/turma/name/:name', async (req, res) => {
@@ -87,7 +87,7 @@ app.get('/turma/name/:name', async (req, res) => {
         return res.status(400)
     }
     
-    res.status(200).json(JSON.stringify(Turma.listByName(name)))
+    res.status(200).json(JSON.stringify(await Turma.listByName(name)))
 })
 
 
@@ -150,7 +150,7 @@ app.delete('/professor/:id', async (req, res) => {
     }
 
     try {
-        const result = Professor.create(id)
+        const result = await Professor.delete(id)
     } catch(err) {
         return res.status(500).json(JSON.stringify(err))
     }
@@ -165,7 +165,7 @@ app.delete('/disciplina/:id', async (req, res) => {
     }
 
     try {
-        const result = Disciplina.create(id)
+        const result = await Disciplina.delete(id)
     } catch(err) {
         return res.status(500).json(JSON.stringify(err))
     }
@@ -180,7 +180,7 @@ app.delete('/turma/:id', async (req, res) => {
     }
 
     try {
-        const result = Turma.create(id)
+        const result = await Turma.delete(id)
     } catch(err) {
         return res.status(500).json(JSON.stringify(err))
     }
@@ -199,7 +199,7 @@ app.put('/professor/:id', async (req, res) => {
     }
 
     try {
-        const result = Professor.update(req.body, id)
+        const result = await Professor.update(req.body, id)
     } catch(err) {
         return res.status(500).json(JSON.stringify(err))
     }
@@ -214,7 +214,7 @@ app.put('/disciplina/:id', async (req, res) => {
     }
 
     try {
-        const result = Disciplina.update(req.body, id)
+        const result = await Disciplina.update(req.body, id)
     } catch(err) {
         return res.status(500).json(JSON.stringify(err))
     }
@@ -229,7 +229,7 @@ app.put('/turma/:id', async (req, res) => {
     }
 
     try {
-        const result = Turma.update(req.body, id)
+        const result = await Turma.update(req.body, id)
     } catch(err) {
         return res.status(500).json(JSON.stringify(err))
     }
