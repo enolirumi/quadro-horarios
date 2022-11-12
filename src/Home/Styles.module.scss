@@ -43,9 +43,32 @@
 }
 
 .section-cadastro-horarios {
-    width: 100%;
-    min-height: 400px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    margin-top: 100px;
+    .div-cadastro-horarios {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        select,
+        input {
+            padding: 10px 20px;
+        }
+    }
+
+    .btn-salvar {
+        padding: 15px 25px;
+        border-radius: 10px;
+        background-color: orange;
+        cursor: pointer;
+        transition: all .5s ease;
+        margin-top: 50px;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
 }

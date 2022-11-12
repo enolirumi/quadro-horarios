@@ -139,6 +139,19 @@ app.post('/turma', async (req, res) => {
     }
 })
 
+app.post('/horario', async (req, res) => {
+
+    console.log(req.body);
+
+    try {
+        const result = await Horario.create(req.body)
+        console.log(result);
+        return res.status(200).json(JSON.stringify(result))
+    } catch(err) {
+        return res.status(500).json(JSON.stringify(err))
+    }
+})
+
 
 // ---------------- Delete
 

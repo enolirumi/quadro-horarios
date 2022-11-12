@@ -3,7 +3,7 @@ import database from '../db'
 
 export default {
     create: async (data) => {
-        return await database.sync({force: true}).then(async () => {
+        return await database.sync().then(async () => {
             return await ProfessorModel.create(data)
         })
     },

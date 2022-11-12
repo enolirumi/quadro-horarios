@@ -10,7 +10,17 @@ const HorarioModel = database.define('horario', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
+    },
+    dataInicio: {
+        type: DataTypes.DATE
+    },
+    dataFim: {
+        type: DataTypes.DATE
+    },
+    turno: {
+        type: DataTypes.STRING
     }
+
 }, { engine: 'innodb' });
 
 DisciplinaModel.hasOne(HorarioModel);
