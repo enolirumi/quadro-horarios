@@ -1,0 +1,21 @@
+@import '../../node_modules/react-big-calendar/lib/sass/styles.scss';
+
+.rbc-calendar {
+    color: white;
+
+    .rbc-today {
+        background-color: orange;
+    }
+
+    .rbc-event {
+        background-color: orangered;
+    }
+
+    .rbc-off-range-bg {
+        background-color: #1c1c1c;
+    }
+
+    .rbc-btn-group {
+
+    }
+}

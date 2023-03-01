@@ -22,38 +22,21 @@ const separaData = (data) => {
 }
 
 export default {
-    create: async (data) => {
-
-        console.log(data);
-
-        const disponibilidadeTurno = await database.sync().then(async () => {
-            return await TurmaModel.findAll({
-                where: {
-                    professorId: data.professorId,
-                    turno: data.turno,
-                }
-            })
+    listCalendar: async () => {
+        return await database.sync().then(async () => {
+            return await HorarioModel.findAll()
         })
-
-        console.log(disponibilidadeTurno);
-
-        if(disponibilidadeTurno.length > 0) {
-            return {
-                mensageError: 'Este professor não está disponível para este horário'
-            }
-        }
-
-        // const disponibilidadeData = 
-
-        // if() {
-
-        // }
-
+    },
+    create: async (data) => {
+        console.log(data);
         // return await database.sync().then(async () => {
         //     return await TurmaModel.create({
-        //         disciplinaID: disciplinaID,
-        //         professorId: professorId,
-        //         turmaId: turmaId
+        //         disciplinaID: data.disciplinaID,
+        //         professorId: data.professorId,
+        //         turmaId: data.turmaId,
+        //         dataFim: data.dataFim,
+        //         dataInicio: data.dataInicio,
+        //         turno: data.turno,
         //     })
         // })
     },

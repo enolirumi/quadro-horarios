@@ -28,6 +28,10 @@ app.get('/turma', async (req, res) => {
     res.status(200).json(JSON.stringify(await Turma.listAll()))
 })
 
+app.get('/horario', async (req, res) => {
+    res.status(200).json(JSON.stringify(await Horario.listCalendar()))
+}) 
+
 
 // -------------------- FindById
 

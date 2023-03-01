@@ -2,6 +2,10 @@ import styles from './Styles.module.scss'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { IMaskInput } from 'react-imask';
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import './Styles.scss'
+// import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const Home = () => {
 
@@ -12,6 +16,8 @@ const Home = () => {
             'Content-Type': 'application/json'
         }
     });
+
+    const localizer = momentLocalizer(moment);
 
     const cadastraProfessor = async () => {
         const res = await API.post(`${api_url}/professor`, {
@@ -55,15 +61,17 @@ const Home = () => {
     const cadastraHorario = async () => {
 
         const res = await API.post(`${api_url}/horario`, {
-            disciplinaID: disciplinaHorario,
-            turmaID: turmaHorario,
-            professorID: professorHorario,
+            disciplinaId: disciplinaHorario,
+            turmaId: turmaHorario,
+            professorId: professorHorario,
             turno: turnoHorario,
             dataInicio: dataInicio,
             dataFim: dataFim
         }).then((res) => {
             return res
         })
+
+
 
         console.log(disciplinaHorario);
     }
@@ -85,6 +93,15 @@ const Home = () => {
 
     const [modal, setModal] = useState(false)
 
+    const myEventsList = [
+        {
+            title: "Teste",
+            allDay: true,
+            start: new Date(2022, 11, 16),
+            end: new Date(2022, 11, 16)
+        }
+    ]
+
     useEffect(() => {
         (async () => {
             const professores = await API.get(`${api_url}/professor`).then((res) => {
@@ -99,6 +116,12 @@ const Home = () => {
             setProfessores(professores);
             setDisciplinas(disciplinas);
             setTurmas(turmas);
+
+            const horarios = await API.get(`${api_url}/horario`).then((res) => {
+                return JSON.parse(res.data);
+            })
+
+            console.log(horarios);
         })()
     }, [])
 
@@ -174,7 +197,7 @@ const Home = () => {
                             value={dataInicio}
                             unmask={false}
                             onAccept={
-                                (setDataInicio, mask) => console.log(dataInicio)
+                                (value, mask) => console.log(dataInicio)
                             }
                         />
                     </div>
@@ -189,6 +212,19 @@ const Home = () => {
                     Cadastrar
                 </div>
             </section>
+            <section>
+                {/* <BigCalendar /> */}
+            </section>
+            <Calendar
+                localizer={localizer}
+                startAccessor="start"
+                endAccessor="end"
+                events={myEventsList}
+                style={{
+                    height: 500,
+                    marginTop: 100
+                }}
+            />
         </>
     )
 }
